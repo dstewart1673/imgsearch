@@ -4,8 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const search = require('./search');
 const port = process.env.PORT || 8080;
-const MongoClient = mongodb.MongoClient;
-const url = process.env.MONGOLAB_URI;
 const app = express();
 
 app.get('/', (req, res) => {
