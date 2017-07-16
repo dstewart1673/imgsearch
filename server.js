@@ -21,3 +21,7 @@ app.get('/imgsearch', (req, res) => {
   const offset = req.params.offset || 0;
   res.send(search(searchTerm, offset));
 }));
+
+app.listen(port, () => {
+  console.log("server listening on " + port);
+});
