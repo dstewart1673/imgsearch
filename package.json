@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.2",
+    "express": "^4.15.3",
     "mongodb": "^2.2.30",
-    "node-fetch": "^1.7.0"
+    "node-fetch": "^1.7.1"
   }
 }
