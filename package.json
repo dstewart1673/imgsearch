@@ -6,8 +6,10 @@
   "dependencies": {
     "express": "^4.15.3",
     "mongodb": "^2.2.30",
-    "node-fetch": "^1.7.1",
-    "node": "^0.0.0"
+    "node-fetch": "^1.7.1"
+  },
+  "engines": {
+    "node": "6.9.4"
   },
   "devDependencies": {},
   "scripts": {
