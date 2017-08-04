@@ -35,7 +35,7 @@ function search(searchTerm, offset) {
     result.body.on('data', (chunk) => {str += chunk});
     result.body.on('end', () => {
       const data = JSON.parse(str);
-      console.log(data);
+      return data;
     });
   }).catch((err) => {console.log("FAILED! " + err)});
 }
