@@ -26,3 +26,5 @@ function search(searchTerm, offset) {
     return JSON.stringify(result.splice(10 * offset, 10 * (offset + 1)));
   });
 }
+
+export default search;
