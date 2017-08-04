@@ -23,7 +23,7 @@ function search(searchTerm, offset) {
 
   });
   fetch(searchUrl).then((result) => {
-    console.log(result);
+    console.log(result.hits);
     return result.splice(10 * offset, 10 * (offset + 1));
   }).catch(() => {console.log("FAILED!")});
 }
