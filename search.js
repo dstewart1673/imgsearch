@@ -30,11 +30,7 @@ function search(searchTerm, offset) {
   const req = http.request(options, (res) => {
     res.on('data', (chunk) => {str += chunk});
     res.on('end', () = {console.log(JSON.parse(str))});
-  });
-  req.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
-  });
-  req.end();
+  }).end();
   /*fetch(searchUrl).then((result) => {
     return result.json;
   }).then((json) => {
