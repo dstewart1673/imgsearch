@@ -32,13 +32,13 @@ function search(searchTerm, offset) {
     res.on('end', () => {console.log(str)});
   }).end();*/
   fetch(searchUrl).then((result) => {
-    console.log(result.headers);
-    let str = '';
+    console.log(result.json);
+    /*let str = '';
     result.on('data', (chunk) => {str += chunk});
     result.on('end', () => {
       const data = JSON.parse(str);
       console.log(data);
-    });
+    });*/
   }).catch((err) => {console.log("FAILED! " + err)});
 }
 
