@@ -38,7 +38,7 @@ function search(searchTerm, offset) {
       const data = JSON.parse(str);
       console.log(data);
     });
-  }).catch(() => {console.log("FAILED!")});
+  });
 }
 
 module.exports = search;
