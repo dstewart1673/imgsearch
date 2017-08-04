@@ -9,6 +9,7 @@ const apiKey = process.env.APIKEY;
 
 function search(searchTerm, offset) {
   const searchUrl = 'www.pixabay.com/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm);
+  console.log(searchUrl);
   mongodb.connect(mongoUrl, (err, db) => {
     if (err) throw err;
     const docs = db.collection('urls');
