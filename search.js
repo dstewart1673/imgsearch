@@ -23,8 +23,8 @@ function search(searchTerm, offset) {
 
   });
   fetch(searchUrl).then((result) => {
-    console.log result[0];
-    return (result.splice(10 * offset, 10 * (offset + 1)));
+    console.log(result);
+    return result.splice(10 * offset, 10 * (offset + 1));
   });
 }
 
