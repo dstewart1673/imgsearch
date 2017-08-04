@@ -5,10 +5,9 @@ const fetch = require('node-fetch');
 const MongoClient = mongodb.MongoClient;
 const mongoUrl = process.env.MONGOLAB_URI;
 const apiKey = process.env.APIKEY;
-const baseURL = "https://pixabay.com/api/?key=" + apiKey + "&q=";
 
 function search(searchTerm, offset) {
-  const searchUrl = baseURL + encodeURIComponent(searchTerm);
+
   mongodb.connect(mongoUrl, (err, db) => {
     if (err) throw err;
     const docs = db.collection('urls');
@@ -22,11 +21,22 @@ function search(searchTerm, offset) {
     })
 
   });
-  fetch(searchUrl).then((result) => {
+  const options = {
+    hostname: 'www.pixabay.com',
+    path: '/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm)
+  };
+  const req = http.request(options, (res) => {
+    console.log(res.body.hits);
+  });
+  req.on('error', (e) => {
+    console.error(`problem with request: ${e.message}`);
+  });
+  req.end();
+  /*fetch(searchUrl).then((result) => {
     return result.json;
   }).then((json) => {
     console.log(json);
-  }).catch(() => {console.log("FAILED!")});
+  }).catch(() => {console.log("FAILED!")});*/
 }
 
 module.exports = search;
