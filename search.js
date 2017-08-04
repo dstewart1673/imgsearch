@@ -8,7 +8,7 @@ const mongoUrl = process.env.MONGOLAB_URI;
 const apiKey = process.env.APIKEY;
 
 function search(searchTerm, offset) {
-
+  const searchUrl = 'www.pixabay.com/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm)
   mongodb.connect(mongoUrl, (err, db) => {
     if (err) throw err;
     const docs = db.collection('urls');
@@ -19,10 +19,9 @@ function search(searchTerm, offset) {
     docs.insert(record, (err, data) => {
       if (err) throw err;
       db.close();
-    })
-
+    });
   });
-  const options = {
+  /*const options = {
     hostname: 'www.pixabay.com',
     path: '/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm)
   };
@@ -30,12 +29,15 @@ function search(searchTerm, offset) {
   const req = http.request(options, (res) => {
     res.on('data', (chunk) => {str += chunk});
     res.on('end', () => {console.log(str)});
-  }).end();
-  /*fetch(searchUrl).then((result) => {
-    return result.json;
-  }).then((json) => {
-    console.log(json);
-  }).catch(() => {console.log("FAILED!")});*/
+  }).end();*/
+  fetch(searchUrl).then((result) => {
+    let str = '';
+    result.on('data', (chunk) => {str += chunk});
+    result.on('end', () => {
+      const data = JSON.parse(str);
+      console.log(data);
+    });
+  }).catch(() => {console.log("FAILED!")});
 }
 
 module.exports = search;
