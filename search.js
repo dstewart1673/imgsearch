@@ -27,7 +27,7 @@ function search(searchTerm, offset) {
     path: '/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm)
   };
   const req = http.request(options, (res) => {
-    console.log(res.body.hits);
+    console.log(res);
   });
   req.on('error', (e) => {
     console.error(`problem with request: ${e.message}`);
