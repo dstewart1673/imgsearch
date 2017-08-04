@@ -31,14 +31,13 @@ function search(searchTerm, offset) {
     res.on('end', () => {console.log(str)});
   }).end();*/
   fetch(searchUrl).then((result) => {
-    return JSON.parse(result);
-    /*let str = '';
-    result.on('data', (chunk) => {str += chunk});
-    result.on('end', () => {
+    let str = '';
+    result.body.on('data', (chunk) => {str += chunk});
+    result.body.on('end', () => {
       const data = JSON.parse(str);
       console.log(data);
-    });*/
-  }).then((json) => {console.log(json)}).catch((err) => {console.log("FAILED! " + err)});
+    });
+  }).catch((err) => {console.log("FAILED! " + err)});
 }
 
 module.exports = search;
