@@ -36,11 +36,10 @@ function search(searchTerm, offset) {
     result.body.on('data', (chunk) => {str += chunk});
     result.body.on('end', () => {
       const data = JSON.parse(str);
-      console.log(data);
       returnVal = data;
     });
   }).catch((err) => {console.log("FAILED! " + err)});
-
+  console.log(returnVal);
   return returnVal;
 }
 
