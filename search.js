@@ -31,7 +31,7 @@ function search(searchTerm, offset) {
     res.on('end', () => {console.log(str)});
   }).end();*/
   fetch(searchUrl).then((result) => {
-    return result.json;
+    return JSON.parse(result);
     /*let str = '';
     result.on('data', (chunk) => {str += chunk});
     result.on('end', () => {
