@@ -23,7 +23,7 @@ function search(searchTerm, offset) {
 
   });
   fetch(searchUrl).then((result) => {
-    return JSON.stringify(result.splice(10 * offset, 10 * (offset + 1)));
+    return (result.splice(10 * offset, 10 * (offset + 1)));
   });
 }
 
