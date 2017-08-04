@@ -26,8 +26,10 @@ function search(searchTerm, offset) {
     hostname: 'www.pixabay.com',
     path: '/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm)
   };
+  let str = "";
   const req = http.request(options, (res) => {
-    console.log(res);
+    res.on('data', (chunk) => {str += chunk});
+    res.on('end', () = {console.log(JSON.parse(str))});
   });
   req.on('error', (e) => {
     console.error(`problem with request: ${e.message}`);
