@@ -9,7 +9,7 @@ const apiKey = process.env.APIKEY;
 
 function search(searchTerm, offset) {
   const searchUrl = 'https://www.pixabay.com/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm);
-  let returnVal;
+  let returnVal = [];
   mongodb.connect(mongoUrl, (err, db) => {
     if (err) throw err;
     const docs = db.collection('urls');
@@ -36,7 +36,7 @@ function search(searchTerm, offset) {
     result.body.on('data', (chunk) => {str += chunk});
     result.body.on('end', () => {
       const data = JSON.parse(str);
-      returnVal = data;
+      returnVal.push(data);
     });
   }).catch((err) => {console.log("FAILED! " + err)});
   console.log(returnVal);
