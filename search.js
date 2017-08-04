@@ -27,4 +27,4 @@ function search(searchTerm, offset) {
   });
 }
 
-export default search;
+module.exports = search;
