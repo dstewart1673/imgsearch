@@ -29,7 +29,7 @@ function search(searchTerm, offset) {
   let str = "";
   const req = http.request(options, (res) => {
     res.on('data', (chunk) => {str += chunk});
-    res.on('end', () => {console.log(JSON.parse(str))});
+    res.on('end', () => {console.log(str)});
   }).end();
   /*fetch(searchUrl).then((result) => {
     return result.json;
