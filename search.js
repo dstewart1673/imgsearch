@@ -9,7 +9,6 @@ const apiKey = process.env.APIKEY;
 
 function search(searchTerm, offset) {
   const searchUrl = 'https://www.pixabay.com/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm);
-  console.log(searchUrl);
   mongodb.connect(mongoUrl, (err, db) => {
     if (err) throw err;
     const docs = db.collection('urls');
@@ -32,14 +31,14 @@ function search(searchTerm, offset) {
     res.on('end', () => {console.log(str)});
   }).end();*/
   fetch(searchUrl).then((result) => {
-    console.log(result.json);
+    return result.json;
     /*let str = '';
     result.on('data', (chunk) => {str += chunk});
     result.on('end', () => {
       const data = JSON.parse(str);
       console.log(data);
     });*/
-  }).catch((err) => {console.log("FAILED! " + err)});
+  }).then((json) => {console.log(json)}).catch((err) => {console.log("FAILED! " + err)});
 }
 
 module.exports = search;
