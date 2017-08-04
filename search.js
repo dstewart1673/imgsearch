@@ -23,8 +23,9 @@ function search(searchTerm, offset) {
 
   });
   fetch(searchUrl).then((result) => {
-    console.log(result.hits);
-    return result.splice(10 * offset, 10 * (offset + 1));
+    return result.json;
+  }).then((json) => {
+    console.log(json);
   }).catch(() => {console.log("FAILED!")});
 }
 
