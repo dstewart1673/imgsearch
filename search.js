@@ -1,6 +1,5 @@
 const express = require('express');
 const http = require('http');
-const router = express.Router();
 const mongodb = require('mongodb');
 const fetch = require('node-fetch');
 const MongoClient = mongodb.MongoClient;
@@ -30,7 +29,7 @@ function search(searchTerm, offset) {
     res.on('data', (chunk) => {str += chunk});
     res.on('end', () => {console.log(str)});
   }).end();*/
-  const retVal = await fetch(searchUrl).then((result) => {
+  const retVal = fetch(searchUrl).then((result) => {
     let str = "";
     let returnVal = [];
     result.body.on('data', (chunk) => {str += chunk});
