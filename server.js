@@ -5,7 +5,6 @@ const path = require('path');
 const http = require('http');
 const port = process.env.PORT || 8080;
 const app = express();
-const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const mongoUrl = process.env.MONGOLAB_URI;
 const apiKey = process.env.APIKEY;
