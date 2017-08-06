@@ -30,7 +30,7 @@ function search(searchTerm, offset) {
     res.on('data', (chunk) => {str += chunk});
     res.on('end', () => {console.log(str)});
   }).end();*/
-  const retVal = fetch(searchUrl).then((result) => {
+  const retVal = await fetch(searchUrl).then((result) => {
     let str = "";
     let returnVal = [];
     result.body.on('data', (chunk) => {str += chunk});
