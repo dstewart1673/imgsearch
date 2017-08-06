@@ -46,7 +46,7 @@ app.get('/imgsearch', (req, res) => {
       const data = JSON.parse(str);
       for (let x in data.hits) {
         returnVal[x] = {};
-        returnVal[x].pageURL = data.hits[x].pageUrl;
+        returnVal[x].pageURL = data.hits[x].pageURL;
         returnVal[x].tags = data.hits[x].tags;
         returnVal[x].user = data.hits[x].user;
       };
