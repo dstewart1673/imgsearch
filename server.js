@@ -10,7 +10,6 @@ const MongoClient = mongodb.MongoClient;
 const mongoUrl = process.env.MONGOLAB_URI;
 const apiKey = process.env.APIKEY;
 const fetch = require('node-fetch');
-const search = require('./search');
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'), (err) => {
