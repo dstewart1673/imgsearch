@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 app.get('/imgsearch', (req, res) => {
   const searchTerm = req.query.search;
-  const offset = req.query.offset || 0;
+  const offset = parseInt(req.query.offset) + 1 || 1;
   const results = search(searchTerm, offset);
   console.log(results);
   res.json(results);
