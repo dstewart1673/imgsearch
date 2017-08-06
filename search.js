@@ -42,6 +42,7 @@ function search(searchTerm, offset) {
         returnVal[x].tags = data.hits[x].tags;
         returnVal[x].user = data.hits[x].user;
       };
+      console.log(returnVal);
     });
   }).catch((err) => {console.log("FAILED! " + err)});
   console.log(returnVal);
