@@ -29,7 +29,7 @@ app.get('/imgsearch', (req, res) => {
     if (err) throw err;
     const docs = db.collection('urls');
     const record = {
-      date: new Date(),
+      date: new Date().getTime(),
       search: searchTerm
     };
     docs.insert(record, (err, data) => {
@@ -54,6 +54,23 @@ app.get('/imgsearch', (req, res) => {
       res.json(returnVal);
     });
   }).catch((err) => {console.log("FAILED! " + err)});
+});
+
+app.get('/history', (req, res) => {
+  mongodb.connect(mongoUrl, (err, db) => {
+    if (err) throw err;
+    const docs = db.collection('urls');
+    const timestamp = new Date().getTime();
+    timestamp -= 86400000 * 10;
+    docs.deleteMany({time: {$lt:timestamp}}, (err, data) => {
+      if (err) throw err;
+      docs.find({}).toArray((err, results) => {
+        if (err) throw err;
+        res.send(result);
+        db.close();
+      });
+    });
+  });
 });
 
 
