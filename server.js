@@ -10,6 +10,7 @@ const mongoUrl = process.env.MONGOLAB_URI;
 const apiKey = process.env.APIKEY;
 const fetch = require('node-fetch');
 
+//Sends landing page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'), (err) => {
     if (err) {
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
   });
 });
 
+//provides search functionality
 app.get('/imgsearch', (req, res) => {
   const searchTerm = req.query.search;
   const offset = parseInt(req.query.offset) + 1 || 1;
@@ -38,6 +40,7 @@ app.get('/imgsearch', (req, res) => {
     });
   });
 
+  //Initially planned for this functionality to be within a module, but the inability to cleanly pass data out of a promise prevents that.
   fetch(searchUrl).then((result) => {
     let str = "";
     let returnVal = [];
@@ -55,6 +58,7 @@ app.get('/imgsearch', (req, res) => {
   }).catch((err) => {console.log("FAILED! " + err)});
 });
 
+//displays all search requests in the past 10 days.
 app.get('/history', (req, res) => {
   mongodb.connect(mongoUrl, (err, db) => {
     if (err) throw err;
@@ -64,6 +68,7 @@ app.get('/history', (req, res) => {
     docs.deleteMany({time: {$lt:timestamp}}, (err, data) => {
       if (err) throw err;
       const results = docs.find({}, {search: 1}).toArray();
+      console.log(results);
       res.send(results);
       db.close();
     });
