@@ -59,7 +59,7 @@ app.get('/history', (req, res) => {
   mongodb.connect(mongoUrl, (err, db) => {
     if (err) throw err;
     const docs = db.collection('urls');
-    const timestamp = new Date().getTime();
+    let timestamp = new Date().getTime();
     timestamp -= 86400000 * 10;
     docs.deleteMany({time: {$lt:timestamp}}, (err, data) => {
       if (err) throw err;
