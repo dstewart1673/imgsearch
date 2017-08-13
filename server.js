@@ -50,7 +50,6 @@ app.get('/imgsearch', (req, res) => {
         returnVal[x].tags = data.hits[x].tags;
         returnVal[x].user = data.hits[x].user;
       };
-          console.log(returnVal);
       res.json(returnVal);
     });
   }).catch((err) => {console.log("FAILED! " + err)});
