@@ -67,10 +67,11 @@ app.get('/history', (req, res) => {
     timestamp -= 86400000 * 10;
     docs.deleteMany({time: {$lt:timestamp}}, (err, data) => {
       if (err) throw err;
-      const results = docs.find({}, {search: 1}).toArray();
-      console.log(results);
-      res.send(results);
-      db.close();
+      docs.find({}, {search: 1}).toArray((err, results) => {
+        console.log(results);
+        res.send(results);
+        db.close();
+      });
     });
   });
 });
