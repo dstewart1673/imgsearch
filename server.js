@@ -27,6 +27,7 @@ app.get('/imgsearch', (req, res) => {
   const offset = parseInt(req.query.offset) + 1 || 1;
   const searchUrl = 'https://www.pixabay.com/api/?key=' + apiKey + "&q=" + encodeURIComponent(searchTerm) + "&page=" + offset;
 
+  //Sends record of search to database for history functionality
   mongodb.connect(mongoUrl, (err, db) => {
     if (err) throw err;
     const docs = db.collection('urls');
@@ -68,7 +69,6 @@ app.get('/history', (req, res) => {
     docs.deleteMany({time: {$lt:timestamp}}, (err, data) => {
       if (err) throw err;
       docs.find({}, {search: 1}).toArray((err, results) => {
-        console.log(results);
         res.send(results);
         db.close();
       });
